@@ -114,7 +114,7 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "http://localhost:3000/login" }),
+  passport.authenticate("google", { failureRedirect: "https://note-keeper-frontend-pfwx.onrender.com/login" }),
   async (req, res) => {
     try {
       const user = req.user;
@@ -122,10 +122,10 @@ router.get(
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
       // Redirect frontend with token
-      res.redirect(`http://localhost:3000/dashboard?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
+      res.redirect(`https://note-keeper-frontend-pfwx.onrender.com/dashboard?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
     } catch (err) {
       console.error("Google login error:", err);
-      res.redirect("http://localhost:3000/login?error=google");
+      res.redirect("https://note-keeper-frontend-pfwx.onrender.com/login?error=google");
     }
   }
 );
