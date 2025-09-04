@@ -18,8 +18,7 @@ const port = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",                   // for local dev
-      "https://frontendfornotesmodi.onrender.com" // deployed frontend
+      "https://note-keeper-frontend-pfwx.onrender.com"
     ],
     credentials: true,
   })
@@ -96,7 +95,7 @@ app.get(
 // Google callback route
 app.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "http://localhost:3000/login" }),
+  passport.authenticate("google", { failureRedirect: "https://note-keeper-frontend-pfwx.onrender.com/login"}),
   (req, res) => {
     const user = req.user;
 
@@ -109,7 +108,7 @@ app.get(
 
     // Redirect to frontend with token + user info
     res.redirect(
-      `http://localhost:3000/dashboard?token=${token}&name=${encodeURIComponent(
+      `https://note-keeper-frontend-pfwx.onrender.com/dashboard?token=${token}&name=${encodeURIComponent(
         user.name
       )}&email=${encodeURIComponent(user.email)}`
     );
