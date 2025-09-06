@@ -122,11 +122,12 @@ router.get(
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
       // Redirect frontend with token
-      res.redirect(
-  `https://note-keeper-frontend-pfwx.onrender.com/?token=${token}&name=${encodeURIComponent(
+     res.redirect(
+  `https://note-keeper-frontend-pfwx.onrender.com/login?token=${token}&name=${encodeURIComponent(
     user.name
   )}&email=${encodeURIComponent(user.email)}`
 );
+
     } catch (err) {
       console.error("Google login error:", err);
       res.redirect("https://note-keeper-frontend-pfwx.onrender.com/login?error=google");

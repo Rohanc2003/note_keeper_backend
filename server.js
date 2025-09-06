@@ -108,10 +108,11 @@ app.get(
 
     // Redirect to frontend with token + user info
     res.redirect(
-  `https://note-keeper-frontend-pfwx.onrender.com/?token=${token}&name=${encodeURIComponent(
+  `https://note-keeper-frontend-pfwx.onrender.com/login?token=${token}&name=${encodeURIComponent(
     user.name
   )}&email=${encodeURIComponent(user.email)}`
 );
+
   }
 );
 
