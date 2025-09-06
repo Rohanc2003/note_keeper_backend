@@ -122,11 +122,7 @@ router.get(
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
       // Redirect frontend with token
-    res.redirect(
-  `https://note-keeper-frontend-pfwx.onrender.com/login?token=${token}&name=${encodeURIComponent(
-    user.name
-  )}&email=${encodeURIComponent(user.email)}`
-);
+    res.redirect(`${process.env.FRONTEND_URL}/login?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
 
 
     } catch (err) {
