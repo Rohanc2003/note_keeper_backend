@@ -112,24 +112,24 @@ router.get(
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "https://note-keeper-frontend-pfwx.onrender.com/login" }),
-  async (req, res) => {
-    try {
-      const user = req.user;
-      const payload = { id: user.id, name: user.name, email: user.email };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
+// router.get(
+//   "/google/callback",
+//   passport.authenticate("google", { failureRedirect: "https://note-keeper-frontend-pfwx.onrender.com/login" }),
+//   async (req, res) => {
+//     try {
+//       const user = req.user;
+//       const payload = { id: user.id, name: user.name, email: user.email };
+//       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-      // Redirect frontend with token
-    res.redirect(`${process.env.FRONTEND_URL}/login?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
+//       // Redirect frontend with token
+//     res.redirect(`${process.env.FRONTEND_URL}/login?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
 
 
-    } catch (err) {
-      console.error("Google login error:", err);
-      res.redirect("https://note-keeper-frontend-pfwx.onrender.com/login?error=google");
-    }
-  }
-);
+//     } catch (err) {
+//       console.error("Google login error:", err);
+//       res.redirect("https://note-keeper-frontend-pfwx.onrender.com/login?error=google");
+//     }
+//   }
+// );
 
 export default router;
